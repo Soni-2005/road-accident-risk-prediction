@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    function sendLocation() {
+      if (!navigator.geolocation) {
+        Streamlit.setComponentValue({
+          error: "Geolocation not supported"
+        });
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          Streamlit.setComponentValue({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        (error) => {
+          Streamlit.setComponentValue({
+            error: error.message
+          });
+        }
+      );
+    }
+  </script>
+</head>
+
+<body onload="sendLocation()">
+</body>
+
+<script src="https://unpkg.com/streamlit-component-lib@1.4.0/dist/index.js"></script>
+</html>

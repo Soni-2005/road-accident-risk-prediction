@@ -1,0 +1,24 @@
+# ======================
+# ML artifacts (DO NOT PUSH)
+# ======================
+models/
+*.pkl
+*.joblib
+
+eda_analysis/
+reports/
+plots/
+figures/
+
+# ======================
+# Data
+# ======================
+data/raw/
+data/processed/
+
+# ======================
+# Python / Env
+# ======================
+__pycache__/
+venv/
+.env

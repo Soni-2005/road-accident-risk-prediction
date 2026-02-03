@@ -64,3 +64,5 @@ loguru>=0.7.0
 # Development & Experiment Tracking (Optional but Strong)
 # -------------------------------
 tqdm>=4.66.0
+
+requests

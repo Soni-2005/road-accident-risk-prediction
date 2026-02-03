@@ -12,9 +12,8 @@ from pathlib import Path
 # --------------------------------------------------
 from config import APP_NAME
 
-# Services (DO NOT CHANGE SIGNATURES)
+# Services
 from services.location import get_browser_location
-
 from services.api import predict_risk
 from services.weather import get_weather
 
@@ -49,7 +48,6 @@ st.markdown(
         background-size: cover;
     }}
 
-    /* Remove white Streamlit containers */
     section[data-testid="stSidebar"] {{
         background: transparent !important;
     }}
@@ -61,7 +59,6 @@ st.markdown(
         background: transparent !important;
     }}
 
-    /* Hide Streamlit chrome */
     footer {{ visibility: hidden; }}
     #MainMenu {{ visibility: hidden; }}
     </style>
@@ -75,14 +72,14 @@ st.markdown(
 def run_default_mode():
     """
     Runs default (automatic) mode:
-    - waits for location
+    - requests browser location (custom component)
     - fetches weather
-    - calls backend
+    - calls backend ML API
     - renders UI
     """
 
     # --------------------------------------------------
-    # Location (browser / fallback logic is INSIDE service)
+    # Location
     # --------------------------------------------------
     location = get_browser_location()
 
@@ -93,7 +90,7 @@ def run_default_mode():
     lat, lon, location_name = location
 
     # --------------------------------------------------
-    # Weather (automatic)
+    # Weather
     # --------------------------------------------------
     weather = get_weather(lat, lon)
 

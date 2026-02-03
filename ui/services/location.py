@@ -1,5 +1,5 @@
 import streamlit as st
-from ..gps_component import get_gps_location
+from ui.gps_component import get_gps_location
 
 
 def get_browser_location():

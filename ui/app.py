@@ -13,7 +13,8 @@ from pathlib import Path
 from config import APP_NAME
 
 # Services (DO NOT CHANGE SIGNATURES)
-from services.location import get_browser_location
+from ui.services.location import get_browser_location
+
 from services.api import predict_risk
 from services.weather import get_weather
 

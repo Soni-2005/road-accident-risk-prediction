@@ -1,9 +1,7 @@
 # ======================
 # ML artifacts (DO NOT PUSH)
 # ======================
-models/
-*.pkl
-*.joblib
+
 
 eda_analysis/
 reports/

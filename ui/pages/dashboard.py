@@ -40,7 +40,7 @@ if "selected_mode" not in st.session_state:
 # --------------------------------------------------
 from config import APP_NAME
 from services.local_predictor import predict_risk_local as predict_risk
-
+from services.local_predictor import predict_risk_local
 from services.weather import get_weather, get_forecast_weather
 
 from components.header import render_header

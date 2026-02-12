@@ -4,10 +4,7 @@
 # ==================================================
 
 import requests
-from config import BACKEND_URL
-# ui/services/weather.py
 import os
-from config import BACKEND_URL
 from datetime import datetime
 
 

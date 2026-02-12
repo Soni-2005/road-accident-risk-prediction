@@ -1,78 +1,78 @@
-# ==================================================
-# UI COMPONENT — SAFETY RIBBON
-# Phase 14.2.3a
-# ==================================================
-
 import streamlit as st
-import time
-
-
-SAFETY_MESSAGES = [
-    "🚫 Don’t drink and drive",
-    "🪖 Always wear a helmet / seatbelt",
-    "⚠️ Slow down near junctions",
-    "🌧️ Reduce speed during rain",
-    "🚸 Watch out for pedestrians",
-    "🔦 Use headlights at night",
-    "🛣️ Beware of sharp curves ahead",
-]
 
 
 def render_safety_ribbon():
     """
-    Renders an animated safety ribbon with rotating safety messages.
+    High-contrast, subtle rolling safety ribbon.
+    Works on light & dark backgrounds.
     """
 
-    # Inject CSS for ribbon styling & animation
-    st.markdown(
-        """
-        <style>
-        .safety-ribbon {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-            background: linear-gradient(
-                270deg,
-                rgba(255, 87, 34, 0.9),
-                rgba(255, 193, 7, 0.9),
-                rgba(76, 175, 80, 0.9)
-            );
-            background-size: 600% 600%;
-            border-radius: 12px;
-            animation: gradientMove 8s ease infinite;
-        }
+    messages = [
+        "🚧 Drive cautiously near junctions",
+        "🌧️ Reduce speed on wet roads",
+        "🌙 Night-time visibility may be reduced",
+        "🚶 Watch for pedestrians in urban areas",
+        "🛑 Maintain safe braking distance",
+    ]
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Session state to rotate messages
-    if "safety_index" not in st.session_state:
-        st.session_state.safety_index = 0
-
-    message = SAFETY_MESSAGES[st.session_state.safety_index]
+    ribbon_text = " • ".join(messages)
 
     st.markdown(
         f"""
         <div class="safety-ribbon">
-            {message}
+            <div class="safety-ribbon-track">
+                {ribbon_text}
+            </div>
         </div>
+
+        <style>
+        /* ===============================
+           SAFETY RIBBON — FINAL FIX
+           =============================== */
+
+        .safety-ribbon {{
+            width: 100%;
+            overflow: hidden;
+            margin: 14px 0 22px 0;
+            padding: 10px 0;
+            border-radius: 14px;
+
+            /* DARK GLASS BACKGROUND */
+            background: rgba(15, 23, 42, 0.65); /* slate-900 */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }}
+
+        .safety-ribbon-track {{
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ribbon-scroll 30s linear infinite;
+
+            font-size: 15px;
+            font-weight: 500;
+            color: #f8fafc; /* HIGH CONTRAST TEXT */
+            letter-spacing: 0.3px;
+        }}
+
+        @keyframes ribbon-scroll {{
+            0% {{
+                transform: translateX(0);
+            }}
+            100% {{
+                transform: translateX(-100%);
+            }}
+        }}
+
+        @media (prefers-reduced-motion: reduce) {{
+            .safety-ribbon-track {{
+                animation: none;
+                padding-left: 0;
+            }}
+        }}
+        </style>
         """,
         unsafe_allow_html=True,
     )
-
-    # Rotate message every render cycle
-    st.session_state.safety_index = (
-        st.session_state.safety_index + 1
-    ) % len(SAFETY_MESSAGES)

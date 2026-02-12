@@ -34,11 +34,14 @@ def predict_risk(payload: RiskRequest):
 
     explanation = Explanation(
         key_factors=[
-            f"Speed limit {payload.speed_limit}",
-            f"Hour {payload.hour}",
-            payload.road_type,
-        ],
-        model_confidence="High"
+        f"Hour {payload.hour}",
+        f"Weather {payload.weather_condition}"
+        if payload.weather_condition else "Weather unknown",
+        f"Speed limit {payload.speed_limit}"
+        if payload.speed_limit else "Speed limit unknown",
+    ],
+    model_confidence="High"
+        
     )
 
     return RiskResponse(

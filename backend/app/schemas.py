@@ -1,17 +1,15 @@
 from pydantic import BaseModel, Field
 from typing import List
+from typing import Optional 
 
 class RiskRequest(BaseModel):
     latitude: float
     longitude: float
-    hour: int = Field(ge=0, le=23)
-    speed_limit: int
-
-    road_type: str
-    junction_detail: str
-    urban_or_rural: str
-    light_conditions: str
-
+    hour: int
+    # Optional contextual features
+    speed_limit: Optional[int] = None
+    road_type: Optional[str] = None
+    weather_condition: Optional[str] = None
 
 class Explanation(BaseModel):
     key_factors: List[str]
@@ -23,4 +21,4 @@ class RiskResponse(BaseModel):
     probability_level: str
     risk_level: str
     severity_context: str
-    explanation: Explanation
+    explanation: Explanation 

@@ -23,7 +23,7 @@ lightgbm>=4.1.0
 # Explainable AI (XAI)
 # -------------------------------
 shap>=0.44.0
-lime>=0.2.0.1
+
 
 # -------------------------------
 # Feature Engineering & Encoding
@@ -66,3 +66,4 @@ loguru>=0.7.0
 tqdm>=4.66.0
 
 requests
+streamlit-geolocation

@@ -67,3 +67,4 @@ tqdm>=4.66.0
 
 requests
 streamlit-geolocation
+streamlit-folium

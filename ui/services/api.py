@@ -5,11 +5,11 @@ from config import BACKEND_URL
 
 
 def predict_risk(payload: dict) -> dict:
-    response = requests.post(
-        f"{BACKEND_URL}/predict-risk",
-        json=payload,
-        timeout=10,
-    )
+    return {
+        "risk_level": "Low",
+        "probability_score": 0.10,
+        "severity_context": "Moderate (global prior)"
+    }
 
     if response.status_code == 422:
         raise ValueError(
